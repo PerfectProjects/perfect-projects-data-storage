@@ -24,22 +24,11 @@ resources:
         ppShortDescription:
             Type: AWS::DynamoDB::Table
             Properties:
-                TableName: pp-short-description
+                TableName: project
                 AttributeDefinitions:
-                    - AttributeName: short_description_id
+                    - AttributeName: id
                       AttributeType: S
                 KeySchema:
-                    - AttributeName: short_description_id
+                    - AttributeName: id
                       KeyType: HASH
                 BillingMode: PAY_PER_REQUEST
-        ppDescription:
-          Type: AWS::DynamoDB::Table
-          Properties:
-            TableName: pp-description
-            AttributeDefinitions:
-              - AttributeName: description_id
-                AttributeType: S
-            KeySchema:
-              - AttributeName: description_id
-                KeyType: HASH
-            BillingMode: PAY_PER_REQUEST

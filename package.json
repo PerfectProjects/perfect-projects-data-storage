@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/PerfectProjects/perfect-projects-database#readme",
   "dependencies": {
-    "serverless": "^2.60.2",
+    "serverless": "^2.64.1",
     "serverless-deployment-bucket": "^1.5.1"
   }
 }
