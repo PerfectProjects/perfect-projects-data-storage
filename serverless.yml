@@ -28,7 +28,16 @@ resources:
                 AttributeDefinitions:
                     - AttributeName: id
                       AttributeType: S
+                    - AttributeName: user_id
+                      AttributeType: S
                 KeySchema:
                     - AttributeName: id
                       KeyType: HASH
+                GlobalSecondaryIndexes:
+                  - IndexName: user_id
+                    KeySchema:
+                      - AttributeName: user_id
+                        KeyType: HASH
+                    Projection:
+                      ProjectionType: "ALL"
                 BillingMode: PAY_PER_REQUEST
