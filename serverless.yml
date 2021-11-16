@@ -25,25 +25,21 @@ resources:
           Type: AWS::S3::Bucket
           Properties:
             AccessControl: Private
-            BucketName: perfect-projects-s3-storage
+            BucketName: perfect-projects-description-storage
             LoggingConfiguration:
               LogFilePrefix: perfect-projects
         perfectProjectsProjectTable:
             Type: AWS::DynamoDB::Table
             Properties:
-                TableName: projects
+                TableName: project
                 AttributeDefinitions:
                     - AttributeName: id
                       AttributeType: S
                     - AttributeName: user_id
                       AttributeType: S
-                    - AttributeName: timestamp
-                      AttributeType: N
                 KeySchema:
                     - AttributeName: id
                       KeyType: HASH
-                    - AttributeName: timestamp
-                      KeyType: RANGE
                 GlobalSecondaryIndexes:
                   - IndexName: user_id
                     KeySchema:
