@@ -1,4 +1,4 @@
-service: perfect-projects-data-storage
+service: ${self:custom.prefix}-data-storage
 
 frameworkVersion: '2'
 
@@ -6,32 +6,38 @@ provider:
   name: aws
   runtime: python3.8
   lambdaHashingVersion: 20201221
+  region: ${opt:region}
+  stage: ${opt:stage}
+  stackName: ${self:custom.prefix}-data-storage
   iam:
     role:
-      name: perfect-project-data-storage-role
+      name: ${self:custom.prefix}-data-storage-role
       statements:
         - Effect: 'Allow'
           Resource: '*'
           Action: 'iam:DeleteBucket'
   deploymentBucket:
-    name: perfect-project-data-storage
+    name: perfect-projects-deployments
 
 plugins:
   - serverless-deployment-bucket
 
+custom:
+  prefix: perfect-projects-${self:provider.stage}-${self:provider.region}
+
 resources:
     Resources:
-        perfetcProjectsStorage:
+        perfectProjectsStorage:
           Type: AWS::S3::Bucket
           Properties:
             AccessControl: Private
-            BucketName: perfect-projects-description-storage
+            BucketName: ${self:custom.prefix}-storage
             LoggingConfiguration:
-              LogFilePrefix: perfect-projects
+              LogFilePrefix: ${self:custom.prefix}
         perfectProjectsProjectTable:
             Type: AWS::DynamoDB::Table
             Properties:
-                TableName: project
+                TableName: ${self:custom.prefix}-projects
                 AttributeDefinitions:
                     - AttributeName: id
                       AttributeType: S
