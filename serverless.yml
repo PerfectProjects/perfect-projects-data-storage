@@ -17,7 +17,7 @@ provider:
           Resource: '*'
           Action: 'iam:DeleteBucket'
   deploymentBucket:
-    name: perfect-projects-deployments
+    name: ${self:custom.prefix}-deployments
 
 plugins:
   - serverless-deployment-bucket
