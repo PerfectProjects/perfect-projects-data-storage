@@ -1,6 +1,8 @@
 name: deploy-eu-central-1-dev
 
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:

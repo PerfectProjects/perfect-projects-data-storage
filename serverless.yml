@@ -54,10 +54,10 @@ resources:
                     Projection:
                       ProjectionType: "ALL"
                 BillingMode: PAY_PER_REQUEST
-        perfectProjectsStatisticsTable:
+        perfectProjectsScoresTable:
           Type: AWS::DynamoDB::Table
           Properties:
-            TableName: ${self:custom.prefix}-statistics
+            TableName: ${self:custom.prefix}-scores
             AttributeDefinitions:
               - AttributeName: project_id
                 AttributeType: S
@@ -66,6 +66,8 @@ resources:
             KeySchema:
               - AttributeName: user_id
                 KeyType: HASH
+              - AttributeName: project_id
+                KeyType: RANGE
             GlobalSecondaryIndexes:
               - IndexName: project_id
                 KeySchema:
