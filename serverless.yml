@@ -76,3 +76,31 @@ resources:
                 Projection:
                   ProjectionType: "ALL"
             BillingMode: PAY_PER_REQUEST
+        perfectProjectsSavedProjectsTable:
+          Type: AWS::DynamoDB::Table
+          Properties:
+            TableName: ${self:custom.prefix}-saved-projects
+            AttributeDefinitions:
+              - AttributeName: project_id
+                AttributeType: S
+              - AttributeName: user_id
+                AttributeType: S
+            KeySchema:
+              - AttributeName: user_id
+                KeyType: HASH
+              - AttributeName: project_id
+                KeyType: RANGE
+            GlobalSecondaryIndexes:
+              - IndexName: user_id
+                KeySchema:
+                  - AttributeName: user_id
+                    KeyType: HASH
+                Projection:
+                  ProjectionType: "ALL"
+              - IndexName: project_id
+                KeySchema:
+                  - AttributeName: project_id
+                    KeyType: HASH
+                Projection:
+                  ProjectionType: "ALL"
+            BillingMode: PAY_PER_REQUEST
