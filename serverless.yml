@@ -32,8 +32,6 @@ resources:
           Properties:
             AccessControl: Private
             BucketName: ${self:custom.prefix}-storage
-            LoggingConfiguration:
-              LogFilePrefix: ${self:custom.prefix}
         perfectProjectsProjectTable:
             Type: AWS::DynamoDB::Table
             Properties:
